@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Xml;
 
-namespace MakeMoney
+namespace MakeMoney.Common
 {
     public static class 若快
     {

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
+using MakeMoney.Common;
 
 namespace MakeMoney.币智慧
 {

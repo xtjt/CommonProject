@@ -4,9 +4,10 @@ using System.IO;
 using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using MakeMoney.Enum;
 using Svg;
 
-namespace MakeMoney
+namespace MakeMoney.Common
 {
     /// <summary>
     /// 识别验证码

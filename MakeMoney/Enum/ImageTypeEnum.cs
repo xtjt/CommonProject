@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MakeMoney
+﻿namespace MakeMoney.Enum
 {
     /// <summary>
     /// 图片文件格式枚举

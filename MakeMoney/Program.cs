@@ -2,6 +2,8 @@
 using RestSharp;
 using System;
 using System.Threading;
+using MakeMoney.Common;
+using MakeMoney.Enum;
 
 namespace MakeMoney
 {

@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Threading;
 using RestSharp;
 
-namespace MakeMoney
+namespace MakeMoney.Common
 {
     public static class 易码
     {
