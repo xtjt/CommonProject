@@ -10,6 +10,7 @@ namespace CommonProject
     {
         static void Main(string[] args)
         {
+            a
         }
     }
 }
