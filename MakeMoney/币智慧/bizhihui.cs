@@ -171,7 +171,7 @@ namespace MakeMoney.币智慧
                     GlobalClass.ValidCount++;
 
                     var sql =
-                        $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values({mobile},{password},{ItemEnum.bizhihui.GetHashCode()},{CommonHelper.GetEnumDescription(ItemEnum.bizhihui)},{"bizhihui.vip"})";
+                        $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values('{mobile}','{password}','{ItemEnum.bizhihui.GetHashCode()}','{CommonHelper.GetEnumDescription(ItemEnum.bizhihui)}','{"bizhihui.vip"}')";
                     var count = new DatabaseHelper().AddOrUpdate(sql);
                     if (count > 0)
                     {
