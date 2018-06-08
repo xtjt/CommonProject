@@ -1,7 +1,11 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.IO;
+using System.Net;
+using System.Text;
 using MakeMoney.Common;
+using MakeMoney.Enum;
 
 namespace MakeMoney.币智慧
 {
@@ -29,17 +33,37 @@ namespace MakeMoney.币智慧
 
         private static string SendMessage(string mobile, string verifyingCode)
         {
-            var client = new RestClient($@"https://i.bizhihui.vip/api/user/{mobile}/code?code=1527492345361&captcha={verifyingCode}&debug=false");
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("postman-token", "5f83b84f-915a-88d2-28a1-39e5b7f1ee6e");
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
-            request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
-            IRestResponse response = client.Execute(request);
+            var url =
+                $@"https://i.bizhihui.vip/api/user/{mobile}/code?code=1527492345361&captcha={verifyingCode}&debug=false";
 
-            if (response != null && !string.IsNullOrWhiteSpace(response.Content))
+            var zx1 = new Cookie("Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c", "1527491441", "/", ".bizhihui.vip");
+            var zx2 = new Cookie("koa:sess", "vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs", "/", ".bizhihui.vip");
+            var zx3 = new Cookie("Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c", "1527492337", "/", ".bizhihui.vip");
+
+            var cookie = new CookieContainer();
+            cookie.Add(zx1);
+            cookie.Add(zx2);
+            cookie.Add(zx3);
+
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
+
+            request.Method = "GET";
+            request.ContentType = "text/html;charset=UTF-8";
+            request.CookieContainer = cookie;
+            request.Timeout = 5000;
+
+            request.Referer = "https://i.bizhihui.vip/invite/oiBOGp";
+
+            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
+
+            if (!string.IsNullOrWhiteSpace(retString))
             {
-                var result = JsonConvert.DeserializeObject<CommonModel>(response.Content);
+                var result = JsonConvert.DeserializeObject<CommonModel>(retString);
                 if (result.error == "0")
                 {
                     return "OK";
@@ -47,29 +71,60 @@ namespace MakeMoney.币智慧
             }
 
             return string.Empty;
+
+            //var client = new RestClient($@"https://i.bizhihui.vip/api/user/{mobile}/code?code=1527492345361&captcha={verifyingCode}&debug=false");
+            //var request = new RestRequest(Method.GET);
+            //request.AddHeader("postman-token", "5f83b84f-915a-88d2-28a1-39e5b7f1ee6e");
+            //request.AddHeader("cache-control", "no-cache");
+            //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+            //request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
+            //IRestResponse response = client.Execute(request);
+
+            //if (response != null && !string.IsNullOrWhiteSpace(response.Content))
+            //{
+            //    var result = JsonConvert.DeserializeObject<CommonModel>(response.Content);
+            //    if (result.error == "0")
+            //    {
+            //        return "OK";
+            //    }
+            //}
+
+            //return string.Empty;
         }
 
         private static string GetCaptcha()
         {
-            var client = new RestClient("https://i.bizhihui.vip/api/user/captcha?debug=false");
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("postman-token", "0b355ef6-7d00-73b9-10ac-2c7be19de104");
-            request.AddHeader("cache-control", "no-cache");
+            var url =
+                $@"https://i.bizhihui.vip/api/user/captcha?debug=false";
 
+            var zx1 = new Cookie("Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c", "1527491441", "/", ".bizhihui.vip");
+            var zx2 = new Cookie("koa:sess", "vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs", "/", ".bizhihui.vip");
+            var zx3 = new Cookie("Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c", "1527492337", "/", ".bizhihui.vip");
 
+            var cookie = new CookieContainer();
+            cookie.Add(zx1);
+            cookie.Add(zx2);
+            cookie.Add(zx3);
 
-            request.AddHeader("cookie2", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527479746,1527624345; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527701080");
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
 
+            request.Method = "GET";
+            request.ContentType = "text/html;charset=UTF-8";
+            request.CookieContainer = cookie;
+            request.Timeout = 5000;
 
-            //request.AddHeader("sessionid", "13815271314");
+            request.Referer = "https://i.bizhihui.vip/invite/oiBOGp";
 
-            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
-            request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
-            IRestResponse response = client.Execute(request);
+            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+            string retString = myStreamReader.ReadToEnd();
+            myStreamReader.Close();
+            myResponseStream.Close();
 
-            if (response != null && !string.IsNullOrWhiteSpace(response.Content))
+            if (!string.IsNullOrWhiteSpace(retString))
             {
-                var result = JsonConvert.DeserializeObject<CaptchaModel>(response.Content);
+                var result = JsonConvert.DeserializeObject<CaptchaModel>(retString);
                 if (result.error == "0")
                 {
                     return result.result.captcha;
@@ -92,9 +147,8 @@ namespace MakeMoney.币智慧
             request.AddHeader("timeout", "5000");
             request.AddHeader("content-type", "application/json");
 
-
-
-            request.AddHeader("cookie2", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527479746,1527624345; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527701080");
+            //request.AddHeader("cookie2",
+            //    "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527479746,1527624345; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527701080");
 
 
             //request.AddHeader("sessionid", "13815271314");
@@ -112,9 +166,21 @@ namespace MakeMoney.币智慧
             {
                 var result = JsonConvert.DeserializeObject<CommonModel>(response.Content);
 
-                if (result.error != "4")
+                if (result.error == "0")
                 {
-                    return "OK";
+                    GlobalClass.ValidCount++;
+
+                    var sql =
+                        $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values({mobile},{password},{ItemEnum.bizhihui.GetHashCode()},{CommonHelper.GetEnumDescription(ItemEnum.bizhihui)},{"bizhihui.vip"})";
+                    var count = new DatabaseHelper().AddOrUpdate(sql);
+                    if (count > 0)
+                    {
+                        return "OK";
+                    }
+
+                    Console.WriteLine("异常：Register：数据新增失败");
+
+                    return string.Empty;
                 }
             }
 

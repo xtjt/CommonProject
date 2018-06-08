@@ -7,8 +7,15 @@ using MakeMoney.Enum;
 
 namespace MakeMoney
 {
+    public sealed class GlobalClass
+    {
+        public static int ValidCount=0;
+    }
+
     class Program
     {
+        public static int Test = 0;
+
         static void Main(string[] args)
         {
             var token = 易码.GetToken(); //token:0058389490b192cd9560715cfdeb8ab32452930d
@@ -18,9 +25,9 @@ namespace MakeMoney
 
             var valid = 0;
 
-            for (var i = 0; ; i++)
+            for (var i = 0;; i++)
             {
-                Console.WriteLine("当前次数：" + (i + 1) + "  有效次数：" + (i - valid));
+                Console.WriteLine("当前次数：" + (i + 1) + "  有效次数：" + GlobalClass.ValidCount);
 
                 try
                 {
@@ -70,17 +77,11 @@ namespace MakeMoney
                         continue;
                     }
 
-
-
-
-                    //15543491284
-
-
-
                     switch (itemEnum)
                     {
                         case ItemEnum.bizhihui:
-                            bizhihui.Register(mobile, message);
+                            var verificationCode = message.Substring(9, 4);
+                            bizhihui.Register(mobile, verificationCode);
                             break;
                     }
 

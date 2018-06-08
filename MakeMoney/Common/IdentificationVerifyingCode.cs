@@ -100,14 +100,7 @@ namespace MakeMoney.Common
 
                 byte[] data = File.ReadAllBytes(fileName);
 
-                //return 若快.ParseVerificationCode(data, typeid, type);  //todo:
-
-
-
-                var zx = Console.ReadLine();
-                return zx;
-
-
+                return 若快.ParseVerificationCode(data, typeid, type); 
             }
             catch (Exception ex)
             {

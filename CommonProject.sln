@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "CommonProject\Test.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeMoney", "MakeMoney\MakeMoney.csproj", "{530DD14A-5731-49A9-B7C5-53D726282A06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{4C743C47-687F-4B6F-B97C-9EF741D39D7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{0A802D62-7C11-45DB-84C1-156602511C9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestSharp", "RestSharp\RestSharp-develop\RestSharp\RestSharp.csproj", "{8DDEBC0D-4B11-42F9-918B-346CE37E4CDF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonHelper", "PythonHelper\PythonHelper\PythonHelper.pyproj", "{44EFD7A7-76F6-42C4-BD7B-BAA616410BE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +29,20 @@ Global
 		{530DD14A-5731-49A9-B7C5-53D726282A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{530DD14A-5731-49A9-B7C5-53D726282A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{530DD14A-5731-49A9-B7C5-53D726282A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C743C47-687F-4B6F-B97C-9EF741D39D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C743C47-687F-4B6F-B97C-9EF741D39D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C743C47-687F-4B6F-B97C-9EF741D39D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C743C47-687F-4B6F-B97C-9EF741D39D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A802D62-7C11-45DB-84C1-156602511C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A802D62-7C11-45DB-84C1-156602511C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A802D62-7C11-45DB-84C1-156602511C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A802D62-7C11-45DB-84C1-156602511C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDEBC0D-4B11-42F9-918B-346CE37E4CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDEBC0D-4B11-42F9-918B-346CE37E4CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDEBC0D-4B11-42F9-918B-346CE37E4CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDEBC0D-4B11-42F9-918B-346CE37E4CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EFD7A7-76F6-42C4-BD7B-BAA616410BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EFD7A7-76F6-42C4-BD7B-BAA616410BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

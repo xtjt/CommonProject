@@ -5,6 +5,10 @@
     /// </summary>
     public enum ItemEnum
     {
-        bizhihui = 16486, //币智慧
+        /// <summary>
+        /// 币智慧
+        /// </summary>
+        [System.ComponentModel.Description("币智慧")]
+        bizhihui = 16486,
     }
 }
