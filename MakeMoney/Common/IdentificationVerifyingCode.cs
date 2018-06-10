@@ -21,7 +21,8 @@ namespace MakeMoney.Common
         /// <param name="typeid">参考：“http://www.ruokuai.com/home/pricetype”</param>
         /// <param name="imageType"></param>
         /// <returns></returns>
-        public static string GetVerifyingCode(string svg, string typeid, ImageTypeEnum imageType = ImageTypeEnum.Png)
+        public static string GetVerifyingCodeBySvg(string svg, string typeid,
+            ImageTypeEnum imageType = ImageTypeEnum.Png)
         {
             if (string.IsNullOrWhiteSpace(svg) || string.IsNullOrWhiteSpace(typeid))
             {
@@ -52,10 +53,10 @@ namespace MakeMoney.Common
                     try
                     {
                         tSvgObj.Draw().Save(newStream, ImageFormat.Png);
-                        tDocumentPdf = new Document(new Rectangle((float)tSvgObj.Width, (float)tSvgObj.Height));
+                        tDocumentPdf = new Document(new Rectangle((float) tSvgObj.Width, (float) tSvgObj.Height));
                         tDocumentPdf.SetMargins(0.0f, 0.0f, 0.0f, 0.0f);
                         iTextSharp.text.Image tGraph = iTextSharp.text.Image.GetInstance(newStream.ToArray());
-                        tGraph.ScaleToFit((float)tSvgObj.Width, (float)tSvgObj.Height);
+                        tGraph.ScaleToFit((float) tSvgObj.Width, (float) tSvgObj.Height);
 
                         newStream = new MemoryStream();
                         tWriter = PdfWriter.GetInstance(tDocumentPdf, newStream);
@@ -85,26 +86,50 @@ namespace MakeMoney.Common
                     break;
             }
 
+            return RuoKuaiVerifyingCode(newStream, typeid, type.Split('/')[1]);
+        }
+
+        private static string RuoKuaiVerifyingCode(Stream stream, string typeid, string imageType = "png")
+        {
+            if (stream == null || string.IsNullOrWhiteSpace(typeid))
+            {
+                return string.Empty;
+            }
+
             var guid = Guid.NewGuid().ToString("N");
 
             var filePath = System.AppDomain.CurrentDomain.BaseDirectory + $@"/ImageFile/";
-            var fileName = filePath + $@"{guid}.{type.Split('/')[1]}";
+            var fileName = filePath + $@"{guid}.{imageType}";
 
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
 
             try
             {
-                System.Drawing.Image image = System.Drawing.Image.FromStream(newStream, true, true);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(stream, true, true);
                 image.Save(fileName);
 
                 byte[] data = File.ReadAllBytes(fileName);
 
-                return 若快.ParseVerificationCode(data, typeid, type); 
+
+                //todo :
+                var zx = Console.ReadLine();
+                return zx;
+
+
+
+
+
+
+
+
+
+
+                return 若快.ParseVerificationCode(data, typeid);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("异常：GetVerifyingCode：" + ex.Message);
+                Console.WriteLine("异常：RuoKuaiVerifyingCode：" + ex.Message);
             }
             finally
             {
@@ -115,6 +140,23 @@ namespace MakeMoney.Common
             }
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="typeid">参考：“http://www.ruokuai.com/home/pricetype”</param>
+        /// <param name="imageType"></param>
+        /// <returns></returns>
+        public static string GetVerifyingCodeByStream(Stream stream, string typeid, string imageType = "png")
+        {
+            if (stream == null || string.IsNullOrWhiteSpace(typeid))
+            {
+                return string.Empty;
+            }
+
+            return RuoKuaiVerifyingCode(stream, typeid, imageType);
         }
     }
 }

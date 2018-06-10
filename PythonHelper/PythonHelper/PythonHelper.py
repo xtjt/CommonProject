@@ -7,7 +7,7 @@ def getMessage(iphone,captcha):
 
     headers = {
         'cookie': "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337",
-        'referer': "https://i.bizhihui.vip/invite/oiBOGp",
+        'referer': "https://i.bizhihui.vip/invite/oqawlC",
         'cache-control': "no-cache",
         'postman-token': "1e93d6fc-b6f0-cfc3-a7b5-2ef5878da781"
         }

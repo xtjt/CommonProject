@@ -19,7 +19,7 @@ namespace CommonProject
             var request = new RestRequest(Method.GET);
             request.AddHeader("postman-token", "3fc9753c-af79-d180-ede2-197ea06c6632");
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
             request.AddHeader("cookie",
                 "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
             IRestResponse response = client.Execute(request);
@@ -34,7 +34,7 @@ namespace CommonProject
            var  request2 = new RestRequest(Method.GET);
             request.AddHeader("postman-token", "97a1825e-aef4-9a0a-0cb4-3fa9b559d2f3");
             request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+            request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
             request.AddHeader("cookie",
                 "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
             IRestResponse response2 = client2.Execute(request2);

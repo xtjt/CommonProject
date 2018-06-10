@@ -10,5 +10,11 @@
         /// </summary>
         [System.ComponentModel.Description("币智慧")]
         bizhihui = 16486,
+
+        /// <summary>
+        /// 币客BKEX
+        /// </summary>
+        [System.ComponentModel.Description("币客BKEX")]
+        bkex = 19336,
     }
 }

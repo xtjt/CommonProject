@@ -12,11 +12,10 @@ namespace MakeMoney.Common
         /// </summary>
         /// <param name="data"></param>
         /// <param name="typeid"></param>
-        /// <param name="type"></param>
         /// <returns></returns>
-        public static string ParseVerificationCode(byte[] data, string typeid, string type)
+        public static string ParseVerificationCode(byte[] data, string typeid)
         {
-            if (data.Length <= 0 || string.IsNullOrWhiteSpace(typeid) || string.IsNullOrWhiteSpace(type))
+            if (data.Length <= 0 || string.IsNullOrWhiteSpace(typeid))
             {
                 Console.WriteLine("异常：ParseVerificationCode：若快配置有误");
                 return string.Empty;

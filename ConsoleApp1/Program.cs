@@ -12,7 +12,7 @@ using System.Text;
 using IronPython.Hosting;
 using MakeMoney.Common;
 using MakeMoney.Enum;
-using MakeMoney.币智慧;
+using MakeMoney.项目.币智慧;
 using Microsoft.Scripting.Hosting;
 using RestSharp;
 
@@ -22,7 +22,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-
+            var zx1 = ItemEnum.bizhihui;
+            var zx2 = ItemEnum.bizhihui.GetHashCode();
+            //var zx3 = bizhihui.GetEnumDescription(ItemEnum.bizhihui);
 
             var sql =
                 $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values(1,1,1,1,1)";
@@ -41,9 +43,7 @@ namespace ConsoleApp1
         
 
 
-            //var zx1 = ItemEnum.bizhihui;
-            //var zx2 = ItemEnum.bizhihui.GetHashCode();
-            //var zx3 = bizhihui.GetEnumDescription(ItemEnum.bizhihui);
+         
 
 
 
@@ -89,7 +89,7 @@ namespace ConsoleApp1
                 //var request = new RestRequest(Method.GET);
                 //request.AddHeader("postman-token", "788c5081-dca0-0e4c-82c9-ad8888475938");
                 //request.AddHeader("cache-control", "no-cache");
-                //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+                //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
                 //request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
                 //IRestResponse response = client.Execute(request);
 
@@ -112,7 +112,7 @@ namespace ConsoleApp1
                 //var request = new RestRequest(Method.GET);
                 //request.AddHeader("postman-token", "2f58ee7b-d823-15ed-6653-8f1f83d09937");
                 //request.AddHeader("cache-control", "no-cache");
-                //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+                //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
                 //request.AddHeader("cookie",
                 //    "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
                 //IRestResponse response = client.Execute(request);
@@ -127,16 +127,16 @@ namespace ConsoleApp1
             //request.AddHeader("postman-token", "4e47120b-9839-5d25-ec2d-bc2233fefd90");
             //request.AddHeader("cache-control", "no-cache");
             //request.AddHeader("content-type", "application/json");
-            //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+            //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
             //request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
-            //request.AddParameter("application/json", "{"phone": "17601475279","password": "love1","code": "2770","eth_url": "","ic": "oiBOGp"rn}", ParameterType.RequestBody);
+            //request.AddParameter("application/json", "{"phone": "17601475279","password": "love1","code": "2770","eth_url": "","ic": "oqawlC"rn}", ParameterType.RequestBody);
             //IRestResponse response = client.Execute(request);
 
 
 
 
             postDataStr =
-                "\"application / json\": \"{ \"phone\": \"17601475279\",\"password\": \"love1\",\"code\": \"2770\",\"eth_url\": \"\",\"ic\": \"oiBOGp";
+                "\"application / json\": \"{ \"phone\": \"17601475279\",\"password\": \"love1\",\"code\": \"2770\",\"eth_url\": \"\",\"ic\": \"oqawlC";
 
 
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create(Url);
@@ -179,7 +179,7 @@ namespace ConsoleApp1
             myStreamWriter.Write(postDataStr);
             myStreamWriter.Close();
 
-            request.Referer = "https://i.bizhihui.vip/invite/oiBOGp";
+            request.Referer = "https://i.bizhihui.vip/invite/oqawlC";
 
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
 
@@ -200,7 +200,7 @@ namespace ConsoleApp1
             //var request = new RestRequest(Method.GET);
             //request.AddHeader("postman-token", "0cdf4b77-b2e1-64cc-ccf5-cb62d9cbe6a2");
             //request.AddHeader("cache-control", "no-cache");
-            //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oiBOGp");
+            //request.AddHeader("referer", "https://i.bizhihui.vip/invite/oqawlC");
             //request.AddHeader("cookie", "Hm_lvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527491441; koa:sess=vgIWWvP3o5iiNG2LNEJizNRLqp4eLODs; Hm_lpvt_bdfb5a0d594bde83c7c3db4f18d0194c=1527492337");
             //IRestResponse response = client.Execute(request);
 
@@ -231,7 +231,7 @@ namespace ConsoleApp1
             request.CookieContainer = cookie;
             request.Timeout = 5000;
 
-            request.Referer = "https://i.bizhihui.vip/invite/oiBOGp";
+            request.Referer = "https://i.bizhihui.vip/invite/oqawlC";
 
             HttpWebResponse response = (HttpWebResponse) request.GetResponse();
             Stream myResponseStream = response.GetResponseStream();
