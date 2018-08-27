@@ -10,6 +10,7 @@ using System.Net;
 using System.Security.Policy;
 using System.Text;
 using IronPython.Hosting;
+using MakeMoney;
 using MakeMoney.Common;
 using MakeMoney.Enum;
 using MakeMoney.项目.币智慧;
@@ -22,24 +23,103 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var zx1 = ItemEnum.bizhihui;
-            var zx2 = ItemEnum.bizhihui.GetHashCode();
-            //var zx3 = bizhihui.GetEnumDescription(ItemEnum.bizhihui);
 
-            var sql =
-                $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values(1,1,1,1,1)";
-            //var count = new DatabaseHelper().AddOrUpdate(sql);
-            //Data Source =.\SQLEXPRESS; Database = ASPNETDB; User id = sa; PWD = 123" providerName="System.Data.SqlClient
+            try
+            {
+                var postDataStr = "{\"username\": \"13815271311\",\"telCountryCode\": \"86\"}";
 
-            var _connString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
-            SqlConnection conn = new SqlConnection(_connString); //Initial Catalog后面跟你数据库的名字  
-                //.\SQLEXPRESS
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.bkex.com/api/send_verify_register");
+                request.Method = "POST";
+                //JSESSIONID = 06E39FD00520A11B43DFAC6706FC73A4; SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528679446 | 1528679446; __cdnuid = 86f4ef5316d4110cdbf7af8e17af0d9d
+                          var zx = GlobalClass.ResponseCookie.Split(';');
 
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            int result = cmd.ExecuteNonQuery(); //result接收受影响行数，也就是说result大于0的话表示添加成功  
-            conn.Close();
-            cmd.Dispose();
+                var zx1 = new Cookie("JSESSIONID", "06E39FD00520A11B43DFAC6706FC73A4", "/", ".bkex.com");
+                var zx2 = new Cookie("SERVERID", "c1ba0190021e5f5c28890a5e7b37a0df | 1528679446 | 1528679446", "/", ".bkex.com");
+                var zx3 = new Cookie("__cdnuid", "86f4ef5316d4110cdbf7af8e17af0d9d", "/", ".bkex.com");
+                //new Cookie(name, value, path, domain);
+
+                var cookie = new CookieContainer();
+
+                //request.AddHeader("cookie", $@"{GlobalClass.ResponseCookie}");
+                //    "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+                //request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                //    "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\n" +
+                //    mobile +
+                //    "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"telCountryCode\"\r\n\r\n86\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                //    ParameterType.RequestBody);
+                //IRestResponse response = client.Execute(request);
+
+
+                cookie.Add(zx1);
+                cookie.Add(zx2);
+                cookie.Add(zx3);
+
+
+
+
+
+                //request.ContentType = "application/x-www-form-urlencoded";
+
+                request.ContentType = "application/json";
+
+                //request.ContentLength = Encoding.UTF8.GetByteCount(postDataStr);
+                //request.CookieContainer = cookie;
+                request.Timeout = 10000;
+                //request.Host = "i.bizhihui.vip";
+
+                //request.CookieContainer = cookie;
+
+
+                //相应请求的参数
+                var data = Encoding.GetEncoding("utf-8").GetBytes(postDataStr);
+                request.ContentLength = data.Length;
+                //请求流
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(data, 0, data.Length);
+                requestStream.Close();
+
+
+                request.Referer = "https://www.bkex.com/";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                response.Cookies = cookie.GetCookies(response.ResponseUri);
+                Stream myResponseStream = response.GetResponseStream();
+                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                string retString = myStreamReader.ReadToEnd();
+                myStreamReader.Close();
+                myResponseStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SendMessage：异常：" + ex.Message);
+            }
+
+
+
+
+
+
+
+
+            //var zx1 = ItemEnum.bizhihui;
+            //var zx2 = ItemEnum.bizhihui.GetHashCode();
+            ////var zx3 = bizhihui.GetEnumDescription(ItemEnum.bizhihui);
+
+            //var sql =
+            //    $@"insert AccountInfo(AIMobile,AIPwd,AIProjectId,AIDescribe,AIWebSite) values(1,1,1,1,1)";
+            ////var count = new DatabaseHelper().AddOrUpdate(sql);
+            ////Data Source =.\SQLEXPRESS; Database = ASPNETDB; User id = sa; PWD = 123" providerName="System.Data.SqlClient
+
+            //var _connString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            //SqlConnection conn = new SqlConnection(_connString); //Initial Catalog后面跟你数据库的名字  
+            //    //.\SQLEXPRESS
+
+            //conn.Open();
+            //SqlCommand cmd = new SqlCommand(sql, conn);
+            //int result = cmd.ExecuteNonQuery(); //result接收受影响行数，也就是说result大于0的话表示添加成功  
+            //conn.Close();
+            //cmd.Dispose();
         
 
 

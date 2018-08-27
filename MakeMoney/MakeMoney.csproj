@@ -92,10 +92,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\RuoKuaiHttp.cs" />
+    <Compile Include="项目\EOZ\eoz.cs" />
     <Compile Include="项目\币客BKEX\bkex.cs" />
     <Compile Include="项目\币智慧\bizhihui.cs" />
     <Compile Include="Common\易码.cs" />
     <Compile Include="Common\若快.cs" />
+    <Compile Include="项目\火牛firebull\firebull.cs" />
+    <Compile Include="项目\链一BCONES\bcones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

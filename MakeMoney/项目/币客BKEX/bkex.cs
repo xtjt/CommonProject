@@ -56,73 +56,11 @@ namespace MakeMoney.项目.币客BKEX
         {
             try
             {
-                //var url =
-                //    $@"https://www.bkex.com/api/send_verify_register";
-
-                //var zx1 = new Cookie("__cdnuid", "9f01158114da4258dc3b351ce44743d8", "/", ".bkex.com");
-                //var zx2 = new Cookie("JSESSIONID", "92186E6AB082F939923C4EDD821C5DBC", "/", ".bkex.com");
-                ////var zx3 = new Cookie("SERVERID", "c1ba0190021e5f5c28890a5e7b37a0df|1528620148|1528620147", "/", ".bkex.com");
-                ////SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528620148 | 1528620147
-                //var cookie = new CookieContainer();
-                //cookie.Add(zx1);
-                //cookie.Add(zx2);
-                ////cookie.Add(zx3);
-
-
-
-                ////var client = new RestClient("https://www.bkex.com/api/send_verify_register");
-                ////var request = new RestRequest(Method.POST);
-                ////request.AddHeader("postman-token", "fc7dcdf7-15a0-3306-bdda-4f115c6d675d");
-                ////request.AddHeader("referer", "https://www.bkex.com/");
-                ////request.AddHeader("cookie",
-                ////    "__cdnuid=9f01158114da4258dc3b351ce44743d8; JSESSIONID=92186E6AB082F939923C4EDD821C5DBC");
-                ////request.AddHeader("cache-control", "no-cache");
-                ////request.AddHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
-                ////request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                ////    "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\n" +
-                ////    mobile +
-                ////    "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"telCountryCode\"\r\n\r\n86\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                ////    ParameterType.RequestBody);
-                ////IRestResponse response = client.Execute(request);
-
-                //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-                //request.Method = "GET";
-                //request.ContentType = "text/html;charset=UTF-8";
-                //request.CookieContainer = cookie;
-                //request.Timeout = 10000;
-
-                //request.Referer = "https://www.bkex.com/";
-
-                //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                //Stream myResponseStream = response.GetResponseStream();
-
-                ////SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528617470 | 1528617470; Path =/
-                //string responseCookie = response.Headers.Get("Set-Cookie");
-
-                //if (!string.IsNullOrWhiteSpace(responseCookie))
-                //{
-                //    GlobalClass.ResponseCookie = responseCookie.Split(';')[0];
-                //}
-
-
-                ////StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
-                ////string retString = myStreamReader.ReadToEnd();
-                ////myStreamReader.Close();
-                ////myResponseStream.Close();
-
-                //return myResponseStream;
-
-
                 var client = new RestClient("https://www.bkex.com/api/send_verify_register");
                 var request = new RestRequest(Method.POST);
-                request.AddHeader("postman-token", "fc7dcdf7-15a0-3306-bdda-4f115c6d675d");
-                request.AddHeader("timeout", "10000");
-                request.AddHeader("referer", "https://www.bkex.com/");
+                request.AddHeader("timeout", "20000");
                 request.AddHeader("cookie",
-                    "__cdnuid=9f01158114da4258dc3b351ce44743d8; JSESSIONID=92186E6AB082F939923C4EDD821C5DBC" +
-                    $@"; {GlobalClass.ResponseCookie}");
-                request.AddHeader("cache-control", "no-cache");
+                    "JSESSIONID=4260879C71C7277A6A4E041B776FCDF5; SERVERID=c1ba0190021e5f5c28890a5e7b37a0df|1528686541|1528686541; __cdnuid=353a40e584d83e8dcfd39460d1d61d4d");
                 request.AddHeader("content-type",
                     "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -141,9 +79,25 @@ namespace MakeMoney.项目.币客BKEX
                         if (result.msg == "success")
                         {
                             //SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528620148 | 1528620147
-                            GlobalClass.ResponseCookie = response.Cookies.Where(m => m.Name == "SERVERID")
-                                .Select(m => m.Name + "=" + m.Value).FirstOrDefault().ToString();
+                            //GlobalClass.ResponseCookie =
+                            //    string.Join(";", response.Cookies.Select(m => m.Name + "=" + m.Value));
+                            //var JSESSIONID = responseCookieSplit.Where(m => m.Split('=')[0].Trim().ToUpper() == "JSESSIONID")
+                            //    .Select(m => m.Split(';')[0]);
 
+                            //var SERVERID = responseCookieSplit.Where(m => m.Split('=')[0].Trim().ToUpper() == "SERVERID")
+                            //    .Select(m => m.Split(';')[0]);
+
+                            //var __cdnuid = responseCookieSplit.Where(m => m.Split('=')[0].Trim().ToUpper() == "__cdnuid")
+                            //    .Select(m => m.Split(';')[0]);
+
+                            //var cookie = GlobalClass.ResponseCookie.Split(';');
+
+                            ////GlobalClass.ResponseCookie= GlobalClass.ResponseCookie
+
+                            //var SERVERID = response.Cookies.Where(m => m.Name == "SERVERID")
+                            //    .Select(m => m.Name + "=" + m.Value).FirstOrDefault();
+
+                            //GlobalClass.ResponseCookie = cookie[0] + "; " + cookie[2] + "; " + SERVERID;
 
                             return "OK";
                         }
@@ -167,81 +121,63 @@ namespace MakeMoney.项目.币客BKEX
         {
             try
             {
-
-                //string phone = "";
-
+                //string random = "";
                 //for (var i = 0; i < 13; i++)
                 //{
-                //    phone += new Random(Guid.NewGuid().GetHashCode()).Next(0, 10);
+                //    random += new Random(Guid.NewGuid().GetHashCode()).Next(0, 10);
                 //}
 
-                //var client = new RestClient($@"https://www.bkex.com/api/captcha?t={phone}");
+                //var client = new RestClient($@"https://www.bkex.com/api/captcha?t={random}");
                 //var request = new RestRequest(Method.GET);
-                //request.AddHeader("postman-token", "987e043a-aa4e-02b1-84d9-0ae34f50463c");
-                //request.AddHeader("referer", "https://www.bkex.com/");
-                //request.AddHeader("cookie", "__cdnuid=9f01158114da4258dc3b351ce44743d8; JSESSIONID=92186E6AB082F939923C4EDD821C5DBC");
-                //request.AddHeader("cache-control", "no-cache");
+                //request.AddHeader("timeout", "20000");
+                //request.AddHeader("cookie", "JSESSIONID=4260879C71C7277A6A4E041B776FCDF5; SERVERID=c1ba0190021e5f5c28890a5e7b37a0df|1528686541|1528686541; __cdnuid=353a40e584d83e8dcfd39460d1d61d4d");
                 //IRestResponse response = client.Execute(request);
 
+                //if (response != null && response.RawBytes.Length>0)
+                //{
+                //    Stream stream = new MemoryStream(response.RawBytes);
 
-                //byte[] imageBytes = Convert.FromBase64String(response.Content);
-                ////读入MemoryStream对象  
-                //MemoryStream memoryStream = new MemoryStream(imageBytes, 0, imageBytes.Length);
-                //memoryStream.Write(imageBytes, 0, imageBytes.Length);
+                //    return stream;
+                //}
 
-                ////IdentificationVerifyingCode.GetVerifyingCodeByStream(memoryStream, "3040", "jpeg");
-
-
-                //return memoryStream;
+                //return null;
 
 
-                string phone = "";
+                string random = "";
 
                 for (var i = 0; i < 13; i++)
                 {
-                    phone += new Random(Guid.NewGuid().GetHashCode()).Next(0, 10);
+                    random += new Random(Guid.NewGuid().GetHashCode()).Next(0, 10);
                 }
 
-                var url =
-                    $@"https://www.bkex.com/api/captcha?t={phone}";
+                var url = $@"https://www.bkex.com/api/captcha?t={random}";
 
-                var zx1 = new Cookie("__cdnuid", "9f01158114da4258dc3b351ce44743d8", "/", ".bkex.com");
-                var zx2 = new Cookie("JSESSIONID", "92186E6AB082F939923C4EDD821C5DBC", "/", ".bkex.com");
-                //var zx3 = new Cookie("SERVERID", "c1ba0190021e5f5c28890a5e7b37a0df|1528620148|1528620147", "/", ".bkex.com");
-                //SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528620148 | 1528620147
+                //JSESSIONID = 4260879C71C7277A6A4E041B776FCDF5; SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528686541 | 1528686541; __cdnuid = 353a40e584d83e8dcfd39460d1d61d4d
+
+                var zx1 = new Cookie("__cdnuid", "353a40e584d83e8dcfd39460d1d61d4d", "/", ".bkex.com");
+                var zx2 = new Cookie("JSESSIONID", "4260879C71C7277A6A4E041B776FCDF5", "/", ".bkex.com");
+                var zx3 = new Cookie("SERVERID", "c1ba0190021e5f5c28890a5e7b37a0df | 1528686541 | 1528686541", "/",
+                    ".bkex.com");
                 var cookie = new CookieContainer();
                 cookie.Add(zx1);
                 cookie.Add(zx2);
-                //cookie.Add(zx3);
+                cookie.Add(zx3);
 
                 HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
 
                 request.Method = "GET";
-                request.ContentType = "text/html;charset=UTF-8";
-                request.CookieContainer = cookie;
-                request.Timeout = 10000;
+                //request.ContentType = "text/html;charset=UTF-8";
+                //request.CookieContainer = cookie;
+                request.Timeout = 20000;
 
-                request.Referer = "https://www.bkex.com/";
+                //request.Referer = "https://www.bkex.com/";
 
                 HttpWebResponse response = (HttpWebResponse) request.GetResponse();
                 Stream myResponseStream = response.GetResponseStream();
 
-                //SERVERID = c1ba0190021e5f5c28890a5e7b37a0df | 1528617470 | 1528617470; Path =/
-                string responseCookie = response.Headers.Get("Set-Cookie");
-
-                if (!string.IsNullOrWhiteSpace(responseCookie))
-                {
-                    GlobalClass.ResponseCookie = responseCookie.Split(';')[0];
-                    //GlobalClass.ResponseCookie = responseCookie;
-                }
-
-
-                //StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
-                //string retString = myStreamReader.ReadToEnd();
-                //myStreamReader.Close();
-                //myResponseStream.Close();
 
                 return myResponseStream;
+
             }
             catch (Exception ex)
             {
@@ -280,16 +216,9 @@ namespace MakeMoney.项目.币客BKEX
 
                 var client = new RestClient("https://www.bkex.com/api/users/register");
                 var request = new RestRequest(Method.POST);
-                request.AddHeader("postman-token", "6d18efca-2f54-3f34-9e27-d4c954cc1992");
-                request.AddHeader("timeout", "10000");
-                request.AddHeader("referer", "https://www.bkex.com/");
-                //request.AddHeader("cookie",
-                //    "__cdnuid=9f01158114da4258dc3b351ce44743d8; JSESSIONID=92186E6AB082F939923C4EDD821C5DBC");
-
+                request.AddHeader("timeout", "20000");
                 request.AddHeader("cookie",
-                    $@"__cdnuid=9f01158114da4258dc3b351ce44743d8; JSESSIONID=92186E6AB082F939923C4EDD821C5DBC; {GlobalClass.ResponseCookie}");
-
-                request.AddHeader("cache-control", "no-cache");
+                    "JSESSIONID=4260879C71C7277A6A4E041B776FCDF5; SERVERID=c1ba0190021e5f5c28890a5e7b37a0df|1528686541|1528686541; __cdnuid=353a40e584d83e8dcfd39460d1d61d4d");
                 request.AddHeader("content-type",
                     "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
                 request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -301,8 +230,7 @@ namespace MakeMoney.项目.币客BKEX
                     verificationCode +
                     "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"captcha\"\r\n\r\n" +
                     imageVerificationCode +
-                    "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"telCountryCode\"\r\n\r\n86\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"inviteCode\"\r\n\r\n" +
-                    "r5QuO103" + "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                    "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"telCountryCode\"\r\n\r\n86\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"inviteCode\"\r\n\r\nr5QuO103\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                     ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
 
@@ -310,12 +238,7 @@ namespace MakeMoney.项目.币客BKEX
                 {
                     try
                     {
-                        var result = JsonConvert.DeserializeObject<CommonModel>(response.Content);
-
-                        //{ "msg":"图形验证码错误.","code":-1,"data":null}
-                        //验证码校验失败
-
-                        if (result.msg == "success")
+                        if (response.Content == "ok")
                         {
                             GlobalClass.ValidCount++;
 

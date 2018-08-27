@@ -3,8 +3,11 @@ using System;
 using System.Threading;
 using MakeMoney.Common;
 using MakeMoney.Enum;
+using MakeMoney.项目.EOZ;
 using MakeMoney.项目.币客BKEX;
 using MakeMoney.项目.币智慧;
+using MakeMoney.项目.链一BCONES;
+using MakeMoney.项目.火牛firebull;
 
 namespace MakeMoney
 {
@@ -12,7 +15,9 @@ namespace MakeMoney
     {
         public static int ValidCount=0;
 
-        public static string ResponseCookie = string.Empty;
+        public static long Random = 1528791243582;
+
+        public static string Cookie = string.Empty;
     }
 
     class Program
@@ -55,14 +60,17 @@ namespace MakeMoney
                     }
 
                     //var itemEnum = ItemEnum.bizhihui; // 币智慧：16486
-                    var itemEnum = ItemEnum.bkex; // 币客BKEX：16486 
+                    //var itemEnum = ItemEnum.bkex; // 币客BKEX：16486 
+                    //var itemEnum = ItemEnum.EOZ; // EOZ：？ 
+                    //var itemEnum = ItemEnum.bcones; // 链一BCONES：17153 
+                    var itemEnum = ItemEnum.firebull; // 火牛firebull：21219 
 
                     var itemid = itemEnum.GetHashCode().ToString();
 
-                    //var mobile = 易码.GetPhoneNumber(token, itemid);
+                    var mobile = 易码.GetPhoneNumber(token, itemid);
 
 
-                    var mobile = "15061815279";
+                    //var mobile = "15061815277";
 
                     if (itemEnum == ItemEnum.bizhihui)
                     {
@@ -117,6 +125,57 @@ namespace MakeMoney
 
                         bkex.MultipleRegister(mobile, message, imageVerificationCode);
                     }
+                   else if (itemEnum == ItemEnum.eoz)
+                    {
+                        // 第一步：获取验证码
+                        var imageVerificationCode = eoz.CaptureImageVerificationCode();
+                        if (string.IsNullOrWhiteSpace(imageVerificationCode))
+                        {
+                            continue;
+                        }
+
+                        // 第二步：注册
+                        eoz.Register(mobile, imageVerificationCode);
+                    }
+                    else if (itemEnum == ItemEnum.bcones)
+                    {
+                        // 第一步：发送短信验证码
+                        var response = bcones.MobileSendMessage(mobile);
+                        if (response != "OK")
+                        {
+                            continue;
+                        }
+
+                        // 第二步：获取手机验证码
+                        var message = 易码.GetMessage(token, itemid, mobile);
+
+                        // 第三步：注册
+                        var verificationCode = message.Substring(16, 4);
+                        bcones.Register(mobile, verificationCode);
+                    }
+                    else if (itemEnum == ItemEnum.firebull)
+                    {
+                        // 第一步：发送短信验证码
+                        var response = firebull.MobileSendMessage(mobile);
+                        if (response != "OK")
+                        {
+                            continue;
+                        }
+
+                        // 第二步：获取手机验证码
+                        var message = 易码.GetMessage(token, itemid, mobile);
+                        if(string.IsNullOrWhiteSpace(message))
+                        {
+                            continue;
+                        }
+                        // 第三步：注册
+                        var verificationCode = message.Substring(9, 6);
+                        firebull.Register(mobile, verificationCode);
+
+                        Thread.Sleep(10000);
+                    }
+
+
 
                     易码.ReleasePhoneNumber(token, itemid, mobile);
                 }

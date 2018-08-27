@@ -1,4 +1,3 @@
-E:\编程软件\文件\CommonProject\MakeMoney\obj\Debug\MakeMoney.csprojAssemblyReference.cache
 E:\编程软件\文件\CommonProject\MakeMoney\obj\Debug\MakeMoney.csproj.CoreCompileInputs.cache
 E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\MakeMoney.exe.config
 E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\MakeMoney.exe
@@ -32,3 +31,4 @@ E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\IronPython.Wpf.xml
 E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\Microsoft.Dynamic.xml
 E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\Microsoft.Scripting.xml
 E:\编程软件\文件\CommonProject\MakeMoney\bin\Debug\Microsoft.Scripting.Metadata.xml
+E:\编程软件\文件\CommonProject\MakeMoney\obj\Debug\MakeMoney.csprojAssemblyReference.cache
